@@ -1,0 +1,42 @@
+<% if flash[:notice].present? %>
+  <p class="alert alert-success"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert].present? %>
+  <p class="alert alert-danger"><%= flash[:alert] %></p>
+<% end %>
+
+<div class="container mt-5">
+  <div class="float-end mb-3">
+    <form action="/logout" method="delete">
+      <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+    </form>
+  </div>
+  <h1 class="mb-4 title">Lista de Usuarios</h1>
+  <% if @users.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo Electrónico</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <form action="<%= user_path(user) %>" method="delete" class="d-inline">
+                <input type="hidden" name="id" value={user.id}>
+                <button type="submit" class="btn btn-info btn-sm">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay usuarios registrados.</p>
+  <% end %>
+</div>
