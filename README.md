@@ -1,24 +1,46 @@
-# README
+### Login App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+El proyecto consta de las siguientes vistas:
 
-Things you may want to cover:
+- **/login:** Permite iniciar sesión.
+- **/register:** Permite registrar un nuevo usuario.
+- **/users:** Muestra una lista de todos los usuarios registrados. El acceso a esta vista requiere estar autenticado.
 
-* Ruby version
+Cuando se registra un usuario, se envía un correo electrónico a la dirección proporcionada durante el registro. Para visualizar el correo, es necesario tener Mailcatcher en ejecución. El contenido del correo contiene un enlace para verificar la cuenta del usuario.
+Luego de verificar la cuenta, el usuario puede iniciar sesión.
 
-* System dependencies
+Dentro de `/users`, cualquier usuario autenticado tiene la capacidad de eliminar a otros usuarios.
+También puede cerrar sesión en la aplicación.
 
-* Configuration
+#### Requisitos
 
-* Database creation
+- Ruby
+- Rails
+- Mailcatcher
+- Postgresql
 
-* Database initialization
+#### Configuración del Proyecto
 
-* How to run the test suite
+1. **Clona este repositorio:**
 
-* Services (job queues, cache servers, search engines, etc.)
+   `git clone git@github.com:rasmussenkaren/login_app.git`
 
-* Deployment instructions
+2. **Instala las gemas:**
 
-* ...
+   `bundle install`
+
+3. **Configura la base de datos:**
+
+   `rails db:create`
+
+   `rails db:migrate`
+
+   Puedes personalizar la configuración en el archivo `config/database.yml`.
+
+4. **Levanta el servidor:**
+
+   `rails server`
+
+5. **Levanta mailcatcher:**
+
+   `mailcatcher`
